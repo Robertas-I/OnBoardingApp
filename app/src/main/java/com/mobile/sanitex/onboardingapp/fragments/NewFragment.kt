@@ -26,29 +26,23 @@ class NewFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ViewModelProviders.of(activity!!).get(NewsViewModel::class.java).apply {
-            if (arguments != null){
-                news.value?.getOrNull(NewFragmentArgs.fromBundle(arguments!!).position).let { new ->
-                    if (new != null){
-                        GlideApp.with(requireContext()).load(new.image).into(activity!!.findViewById<ImageView>(
-                            R.id.app_bar_image))
-                        title.text = new.title
-                        text.text = new.text
-                        author.text = new.author
-                        date.text = new.getFormattedDate()
+        if (arguments != null){
+            NewFragmentArgs.fromBundle(arguments!!).data.let { new ->
+                GlideApp.with(requireContext()).load(new.image).into(activity!!.findViewById<ImageView>(
+                    R.id.app_bar_image))
+                title.text = new.title
+                text.text = new.text
+                author.text = new.author
+                date.text = new.getFormattedDate()
 
-                        readFull.setOnClickListener {
-                            val browserIntent =
-                                Intent(Intent.ACTION_VIEW, Uri.parse(new.url))
-                            startActivity(browserIntent)
-                        }
-
-                    } else
-                        activity?.onBackPressed()
+                readFull.setOnClickListener {
+                    val browserIntent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse(new.url))
+                    startActivity(browserIntent)
                 }
-            } else
-                activity?.onBackPressed()
-        }
+            }
+        } else
+            activity?.onBackPressed()
     }
 
 }

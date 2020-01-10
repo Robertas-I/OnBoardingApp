@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_newsFragment_to_newFragment"
-            app:destination="@id/newFragment" />
+            app:destination="@id/newFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/newFragment"
@@ -19,7 +21,7 @@
         android:label="NewFragment"
         tools:layout="@layout/fragment_new">
         <argument
-            android:name="position"
-            app:argType="integer" />
+            android:name="data"
+            app:argType="com.mobile.sanitex.onboardingapp.data.NewData" />
     </fragment>
 </navigation>

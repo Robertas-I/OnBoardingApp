@@ -48,7 +48,7 @@ class NewsFragment: Fragment(), NewAdapter.OnNewClick {
     }
 
     override fun onNewClick(position: Int, data: NewData) {
-        tryNavigate(NewsFragmentDirections.actionNewsFragmentToNewFragment(position))
+        tryNavigate(NewsFragmentDirections.actionNewsFragmentToNewFragment(data))
     }
 
 }
